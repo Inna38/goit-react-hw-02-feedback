@@ -1,52 +1,25 @@
-import React from "react";
-import { FeedbackOptions } from "../FeedbackOptions/FeedbackOptions";
+import PropTypes from 'prop-types';
+import css from "./Statistics.module.css"
 
 
-export class Statistics extends React.Component {
-    state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-    };
+export const Statistics = ({ good, neutral, bad, total, positiveFeedback }) => {
+  return (
+    <div>
+      <h2 className={css.title}>Statistics</h2>
+      <p className={css.descr}>Good: {good}</p>
+      <p className={css.descr}>Neuteral: {neutral}</p>
+      <p className={css.descr}>Bad: {bad}</p>
+      <p className={css.descr}>Total: {total}</p>
+      <p className={css.descr}>Positive feedback: {positiveFeedback} %</p>
+    </div>
+  );
+};
 
-handleGood = () => {
-        this.setState(prevState => ({
-            good: prevState.good + 1
-        }))
-    }
-  handleNeural = () => {
-      this.setState(prevState => ({
-        neutral: prevState.neutral + 1
-      }))
-  }
-
-  handleBad = () => {
-      this.setState(prevState => ({
-        bad: prevState.bad + 1
-    }))
-    }
-    
-    render() {
-     return(
-         <div>
-              <span>{this.state.good}</span>
-            <span>{this.state.neutral}</span>
-            <span>{this.state.bad}</span> 
-             <h2>Statistics</h2>
-             {/* <p>
-               Good:   {this.state.good}
-             </p>
-             <p>
-                Neuteral: {this.state.neutral}
-             </p>
-             <p>
-                Bad:  {this.state.bad}
-             </p> */}
-            
-             <FeedbackOptions good={this.handleGood}  neutral={ this.handleNeural }  bad={this.handleBad} />
-            
-        </div>
-    )
-    }
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positiveFeedback: PropTypes.number.isRequired,
 }
 
