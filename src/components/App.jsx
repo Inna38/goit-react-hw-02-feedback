@@ -4,7 +4,6 @@ import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
 import { Notification } from 'components/Notification/Notification';
 
-
 export class App extends React.Component {
   state = {
     good: 0,
@@ -12,20 +11,10 @@ export class App extends React.Component {
     bad: 0,
   };
 
-  handleGood = () => {
+  onLeaveFeebdack = e => {
+    const name = e.target.name;
     this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-  };
-  handleNeural = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
-
-  handleBad = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
+      [name]: prevState[name] + 1,
     }));
   };
 
@@ -46,9 +35,8 @@ export class App extends React.Component {
     return (
       <Section title="Please leave feedback">
         <FeedbackOptions
-          handleGood={this.handleGood}
-          handleNeural={this.handleNeural}
-          handleBad={this.handleBad}
+          options={Object.keys(this.state)}
+          onLeaveFeebdack={this.onLeaveFeebdack}
         />
 
         {this.countTotalFeedback() === 0 ? (

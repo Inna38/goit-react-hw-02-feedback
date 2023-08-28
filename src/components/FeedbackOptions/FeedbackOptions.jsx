@@ -1,25 +1,25 @@
 import PropTypes from 'prop-types';
-import css from "./FeedbackOptions.module.css"
+import css from './FeedbackOptions.module.css';
 
-export const FeedbackOptions = ({ handleGood, handleNeural, handleBad }) => {
+export const FeedbackOptions = ({ options, onLeaveFeebdack }) => {
   return (
     <div>
-      <button type="button" onClick={handleGood} className={css.btn}>
-        Good
-      </button>
-      <button type="button" onClick={handleNeural} className={css.btn}>
-        Neural
-      </button>
-      <button type="button" onClick={handleBad} className={css.btn}>
-        Bad
-      </button>
+      {options.map(option => (
+        <button
+          key={option}
+          name={option}
+          type="button"
+          onClick={onLeaveFeebdack}
+          className={css.btn}
+        >
+          {option}
+        </button>
+      ))}
     </div>
   );
 };
 
 FeedbackOptions.propTypes = {
-  handleGood: PropTypes.func.isRequired,
-  handleNeural: PropTypes.func.isRequired,
-  handleBad: PropTypes.func.isRequired,
-}
-
+  options: PropTypes.array.isRequired,
+  onLeaveFeebdack: PropTypes.func.isRequired,
+}.isRequired;
