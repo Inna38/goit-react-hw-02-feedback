@@ -40,7 +40,7 @@ export class App extends React.Component {
         />
 
         {this.countTotalFeedback() === 0 ? (
-          <Notification />
+          <Notification message={"There is no feedback"} />
         ) : (
           <Statistics
             good={good}

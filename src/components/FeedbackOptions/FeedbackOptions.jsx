@@ -20,6 +20,6 @@ export const FeedbackOptions = ({ options, onLeaveFeebdack }) => {
 };
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.array.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onLeaveFeebdack: PropTypes.func.isRequired,
-}.isRequired;
+}
